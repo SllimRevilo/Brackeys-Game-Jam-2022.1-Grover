@@ -31,7 +31,23 @@ public class IntroController : MonoBehaviour {
 
 	void PlayIntro()
     {
-		TextWriter.Instance.WriteLine(TextObject, _intro[_lineIndex]);
+		TextWriter.Instance.WriteLine(TextObject, _intro[_lineIndex++]);
+    }
+
+	void FixedUpdate()
+    {
+		if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse0))
+		{
+			if (TextWriter.CanType)
+			{
+				if (_lineIndex < _intro.Length)
+					TextWriter.Instance.WriteLine(TextObject, _intro[_lineIndex++]);
+			}
+			else if (TextWriter.Skippable)
+			{
+				TextWriter.Instance.SkipLine();
+			}
+		}
     }
 	
 	
