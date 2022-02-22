@@ -26,6 +26,7 @@ public class IntroController : MonoBehaviour {
 	void Start()
     {
 		_lineIndex = 0;
+		PlayIntro();
     }
 
 	void PlayIntro()
