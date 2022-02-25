@@ -47,19 +47,14 @@ public class Drawing : Singleton<Drawing> {
     private LineRenderer _currentLineRenderer;
     private List<GameObject> AllLineObjects;
     private Vector2 _lastPos;
-    
+
     private void Start()
     {
         AllLineObjects = new List<GameObject>();
         Lines = new List<Line>();
     }
-    
-    private void Update()
-    {
-        Draw();
-    }
 
-    private void Draw()
+    public void Draw()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -79,6 +74,15 @@ public class Drawing : Singleton<Drawing> {
         {
             _currentLineRenderer = null;
         }
+    }
+
+    public void DestroyDrawings()
+    {
+        for(int i=0; i<AllLineObjects.Count; i++)
+        {
+            Destroy(AllLineObjects[i]);
+        }
+        AllLineObjects.Clear();
     }
 
     private void CreateBrush() 
