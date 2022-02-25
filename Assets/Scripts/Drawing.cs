@@ -76,6 +76,21 @@ public class Drawing : Singleton<Drawing> {
         }
     }
 
+
+    /// <summary>
+    /// THIS THE POINTY BITCH OLIVER
+    /// </summary>
+    /// <returns>all da points</returns>
+    public List<List<Vector2>> FinalPoints()
+    {
+        List<List<Vector2>> points = new List<List<Vector2>>();
+        foreach(Line l in Lines)
+        {
+            points.Add(l.Points);
+        }
+
+        return points;
+    }
     public void DestroyDrawings()
     {
         for(int i=0; i<AllLineObjects.Count; i++)
