@@ -30,6 +30,7 @@ public class Line
         {
             _currentPoint = newPoint;
             Points.Add(newPoint);
+            ScoreController.Instance.UpdateCheckPoint(newPoint);
         }
     }
 }
