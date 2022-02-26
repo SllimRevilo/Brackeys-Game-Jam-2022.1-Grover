@@ -57,6 +57,12 @@ public class TextWriter : Singleton<TextWriter> {
 		}
     }
 
+	public void TextBubbleFinished (Text txt, System.Action callback = null)
+    {
+		txt.text = "";
+		Panel.GetComponent<Image>().enabled = false;
+	}
+
 	public void SkipLine()
     {
         if (Skippable)
