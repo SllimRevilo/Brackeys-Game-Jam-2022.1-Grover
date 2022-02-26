@@ -1,6 +1,7 @@
-﻿using System.Collections;
+﻿ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public enum CharacterType
 {
@@ -15,7 +16,8 @@ public enum AnimationType
 	Default,
 	Bow,
 	Sad,
-	Happy
+	Happy,
+	Enter
 }
 public class CharacterController :Singleton<CharacterController> {
 
@@ -28,6 +30,43 @@ public class CharacterController :Singleton<CharacterController> {
 	private string _deflateAnimationName = "deflate";
 	private string _defaultAnimationName = "defaultStand";
 	private string _excitedAnimationName = "exciteJump";
+	private string _enterAnimationName = "OLIVER PUT THE WALK ANIMATION NAME HERE";
+
+	//TODO: Fix the anim lenght array 💕
+	private float[] _animLengths = new float[] { 0f/*default length*/, 0f/*bow length*/, 0f/*sad length*/, 0f/*Happy length*/, 0f/*enter length*/ };
+	public CharacterType currentCustomer;
+
+	/// <summary>
+	/// selects a new customer and runs through openning sequence with them and tan chuki
+	/// </summary>
+	/// <param name="onComplete"></param>
+	public void EnterCharacter(System.Action onComplete)
+    {
+		currentCustomer = (CharacterType)Random.Range(1,4);
+		Debug.Log("THIS SEQUENCE WILL CRASH IF YOU DONT FIX THE ANIMATION NAME AnD TIMING THX 💕");
+		DOTween.Sequence()
+			.AppendCallback(() =>
+			{
+				DoCharacterAction(currentCustomer, AnimationType.Enter);
+			})
+			.AppendInterval(_animLengths[(int)AnimationType.Enter])
+			.AppendCallback(() =>
+			{
+				DoCharacterAction(CharacterType.Tanuki, AnimationType.Bow);
+			})
+			.AppendInterval(_animLengths[(int)AnimationType.Bow])
+			.AppendCallback(() =>
+			{
+				DoCharacterAction(currentCustomer, AnimationType.Bow);
+			})
+			.AppendInterval(_animLengths[(int)AnimationType.Bow])
+			.OnComplete(() => 
+			{ 
+				onComplete(); 
+			});
+	}
+
+
 
 	/// <summary>
 	/// Plays the given animation for the given character
@@ -39,73 +78,44 @@ public class CharacterController :Singleton<CharacterController> {
 		switch(character)
         {
 			case CharacterType.Tanuki:
-				switch(animationType)
-                {
-					case AnimationType.Default:
-						TanukiAnimator.Play(_defaultAnimationName);
-						break;
-					case AnimationType.Bow:
-						TanukiAnimator.Play(_bowAnimationName);
-						break;
-					case AnimationType.Happy:
-						TanukiAnimator.Play(_excitedAnimationName);
-						break;
-					case AnimationType.Sad:
-						TanukiAnimator.Play(_deflateAnimationName);
-						break;
-				}
+				SelectAnimation(animationType, TanukiAnimator);
 				break;
 			case CharacterType.Cat:
-				switch (animationType)
-				{
-					case AnimationType.Default:
-						CatAnimator.Play(_defaultAnimationName);
-						break;
-					case AnimationType.Bow:
-						CatAnimator.Play(_bowAnimationName);
-						break;
-					case AnimationType.Happy:
-						CatAnimator.Play(_excitedAnimationName);
-						break;
-					case AnimationType.Sad:
-						CatAnimator.Play(_deflateAnimationName);
-						break;
-				}
+				SelectAnimation(animationType, CatAnimator);
 				break;
 			case CharacterType.Dog:
-				switch (animationType)
-				{
-					case AnimationType.Default:
-						DogAnimator.Play(_defaultAnimationName);
-						break;
-					case AnimationType.Bow:
-						DogAnimator.Play(_bowAnimationName);
-						break;
-					case AnimationType.Happy:
-						DogAnimator.Play(_excitedAnimationName);
-						break;
-					case AnimationType.Sad:
-						DogAnimator.Play(_deflateAnimationName);
-						break;
-				}
+				SelectAnimation(animationType, DogAnimator);
 				break;
 			case CharacterType.Crow:
-				switch (animationType)
-				{
-					case AnimationType.Default:
-						CrowAnimator.Play(_defaultAnimationName);
-						break;
-					case AnimationType.Bow:
-						CrowAnimator.Play(_bowAnimationName);
-						break;
-					case AnimationType.Happy:
-						CrowAnimator.Play(_excitedAnimationName);
-						break;
-					case AnimationType.Sad:
-						CrowAnimator.Play(_deflateAnimationName);
-						break;
-				}
+				SelectAnimation(animationType, CrowAnimator);
 				break;
 		}
     }
+
+	/// <summary>
+	/// Sets the animation of the specified animation type to the specified animator
+	/// </summary>
+	/// <param name="animationType"></param>
+	/// <param name="anim"></param>
+	private void SelectAnimation(AnimationType animationType, Animator anim)
+    {
+		switch (animationType)
+		{
+			case AnimationType.Default:
+				anim.Play(_defaultAnimationName);
+				break;
+			case AnimationType.Bow:
+				anim.Play(_bowAnimationName);
+				break;
+			case AnimationType.Happy:
+				anim.Play(_excitedAnimationName);
+				break;
+			case AnimationType.Sad:
+				anim.Play(_deflateAnimationName);
+				break;
+			case AnimationType.Enter:
+				anim.Play(_enterAnimationName);
+				break;
+		}
+	}
 }

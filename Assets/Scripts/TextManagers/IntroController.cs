@@ -42,6 +42,10 @@ public class IntroController : MonoBehaviour {
 			{
 				if (_lineIndex < _intro.Length)
 					TextWriter.Instance.WriteLine(TextObject, _intro[_lineIndex++]);
+                else
+                {
+					EndIntro();
+                }
 			}
 			else if (TextWriter.Skippable)
 			{
@@ -50,5 +54,9 @@ public class IntroController : MonoBehaviour {
 		}
     }
 	
-	
+	private void EndIntro()
+    {
+		GameManager.Instance.StartGame();
+		gameObject.SetActive(false);
+	}
 }
