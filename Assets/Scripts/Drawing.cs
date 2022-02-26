@@ -47,19 +47,14 @@ public class Drawing : Singleton<Drawing> {
     private LineRenderer _currentLineRenderer;
     private List<GameObject> AllLineObjects;
     private Vector2 _lastPos;
-    
+
     private void Start()
     {
         AllLineObjects = new List<GameObject>();
         Lines = new List<Line>();
     }
-    
-    private void Update()
-    {
-        Draw();
-    }
 
-    private void Draw()
+    public void Draw()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -79,6 +74,30 @@ public class Drawing : Singleton<Drawing> {
         {
             _currentLineRenderer = null;
         }
+    }
+
+
+    /// <summary>
+    /// THIS THE POINTY BITCH OLIVER
+    /// </summary>
+    /// <returns>all da points</returns>
+    public List<List<Vector2>> FinalPoints()
+    {
+        List<List<Vector2>> points = new List<List<Vector2>>();
+        foreach(Line l in Lines)
+        {
+            points.Add(l.Points);
+        }
+
+        return points;
+    }
+    public void DestroyDrawings()
+    {
+        for(int i=0; i<AllLineObjects.Count; i++)
+        {
+            Destroy(AllLineObjects[i]);
+        }
+        AllLineObjects.Clear();
     }
 
     private void CreateBrush() 
