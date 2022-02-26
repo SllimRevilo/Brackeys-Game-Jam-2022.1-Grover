@@ -1,15 +1,87 @@
 fileFormatVersion: 2
-guid: c9ce33319dd5825418b7f5218ebb65c7
+guid: 2c75e78a94d68ed4ea21f157e7865cdd
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2100000: lambert1
-    2100002: lambert2
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: supportbeam
+    100000: body
+    100002: //RootNode
+    100004: earL
+    100006: earR
+    100008: eyeL
+    100010: eyeR
+    100012: eyeShine
+    100014: eyeShine1
+    100016: head
+    100018: nose
+    100020: pCone1
+    100022: pCone1 1
+    100024: pCone2
+    100026: pCone2 1
+    100028: snout
+    100030: snoutbase
+    100032: snoutbase1
+    100034: snoutbase2
+    400000: body
+    400002: //RootNode
+    400004: earL
+    400006: earR
+    400008: eyeL
+    400010: eyeR
+    400012: eyeShine
+    400014: eyeShine1
+    400016: head
+    400018: nose
+    400020: pCone1
+    400022: pCone1 1
+    400024: pCone2
+    400026: pCone2 1
+    400028: snout
+    400030: snoutbase
+    400032: snoutbase1
+    400034: snoutbase2
+    2100000: lambert2
+    2300000: body
+    2300002: eyeL
+    2300004: eyeR
+    2300006: eyeShine
+    2300008: eyeShine1
+    2300010: head
+    2300012: nose
+    2300014: pCone1
+    2300016: pCone1 1
+    2300018: pCone2
+    2300020: pCone2 1
+    2300022: snoutbase
+    2300024: snoutbase1
+    2300026: snoutbase2
+    3300000: body
+    3300002: eyeL
+    3300004: eyeR
+    3300006: eyeShine
+    3300008: eyeShine1
+    3300010: head
+    3300012: nose
+    3300014: pCone1
+    3300016: pCone1 1
+    3300018: pCone2
+    3300020: pCone2 1
+    3300022: snoutbase
+    3300024: snoutbase1
+    3300026: snoutbase2
+    4300000: body
+    4300002: head
+    4300004: eyeL
+    4300006: eyeShine
+    4300008: eyeR
+    4300010: eyeShine1
+    4300012: pCone1
+    4300014: pCone2
+    4300016: snoutbase
+    4300018: nose
+    4300020: snoutbase1
+    4300022: snoutbase2
+    4300024: pCone1
+    4300026: pCone2
   externalObjects:
   - first:
       type: UnityEngine:Material

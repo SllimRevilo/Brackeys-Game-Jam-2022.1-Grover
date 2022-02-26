@@ -91,7 +91,8 @@ public class ScoreController : Singleton<ScoreController>
 		float totalScoreValue = LengthBetweenDrawnPoints * GetScoresLength(drawnLines);
 
 		// gets how far off the two are from each other as a percent less than 100
-		float percentOff;
+		float percentOff = 0;
+		/*
 		if(totalCheckValue > totalScoreValue)
 		{
 			percentOff = totalScoreValue / totalCheckValue;
@@ -100,7 +101,7 @@ public class ScoreController : Singleton<ScoreController>
 		{
 			percentOff = totalCheckValue / totalScoreValue;
 		}
-
+		*/
 		// divide the percent off by what is needed for perfect to get a score
 		float score = percentOff / PercentAccuracyForPerfect;
 

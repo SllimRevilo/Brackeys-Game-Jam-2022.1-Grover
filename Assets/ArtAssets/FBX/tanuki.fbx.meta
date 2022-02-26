@@ -12,6 +12,20 @@ ModelImporter:
     100012: pSphere6
     100014: pSphere7
     100016: //RootNode
+    100018: body
+    100020: earL
+    100022: earR
+    100024: eyeL
+    100026: eyeR
+    100028: eyeShine
+    100030: eyeShine1
+    100032: head
+    100034: headmask
+    100036: nose
+    100038: pSphere6 1
+    100040: pSphere7 1
+    100042: snout
+    100044: snoutbase
     400000: pCylinder1
     400002: pSphere1
     400004: pSphere2
@@ -21,7 +35,22 @@ ModelImporter:
     400012: pSphere6
     400014: pSphere7
     400016: //RootNode
+    400018: body
+    400020: earL
+    400022: earR
+    400024: eyeL
+    400026: eyeR
+    400028: eyeShine
+    400030: eyeShine1
+    400032: head
+    400034: headmask
+    400036: nose
+    400038: pSphere6 1
+    400040: pSphere7 1
+    400042: snout
+    400044: snoutbase
     2100000: lambert1
+    2100002: lambert2
     2300000: pCylinder1
     2300002: pSphere1
     2300004: pSphere2
@@ -30,6 +59,17 @@ ModelImporter:
     2300010: pSphere5
     2300012: pSphere6
     2300014: pSphere7
+    2300016: body
+    2300018: eyeL
+    2300020: eyeR
+    2300022: eyeShine
+    2300024: eyeShine1
+    2300026: head
+    2300028: headmask
+    2300030: nose
+    2300032: pSphere6 1
+    2300034: pSphere7 1
+    2300036: snoutbase
     3300000: pCylinder1
     3300002: pSphere1
     3300004: pSphere2
@@ -38,6 +78,17 @@ ModelImporter:
     3300010: pSphere5
     3300012: pSphere6
     3300014: pSphere7
+    3300016: body
+    3300018: eyeL
+    3300020: eyeR
+    3300022: eyeShine
+    3300024: eyeShine1
+    3300026: head
+    3300028: headmask
+    3300030: nose
+    3300032: pSphere6 1
+    3300034: pSphere7 1
+    3300036: snoutbase
     4300000: pCylinder1
     4300002: pSphere1
     4300004: pSphere2
@@ -46,7 +97,23 @@ ModelImporter:
     4300010: pSphere5
     4300012: pSphere6
     4300014: pSphere7
-  externalObjects: {}
+    4300016: body
+    4300018: head
+    4300020: headmask
+    4300022: eyeL
+    4300024: eyeShine
+    4300026: eyeR
+    4300028: eyeShine1
+    4300030: pSphere7
+    4300032: pSphere6
+    4300034: snoutbase
+    4300036: nose
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert2
+    second: {fileID: 2100000, guid: cf140db9b1ce142448ef94457a374aeb, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

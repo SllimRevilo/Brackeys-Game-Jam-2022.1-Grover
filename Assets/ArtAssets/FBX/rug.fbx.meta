@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c9ce33319dd5825418b7f5218ebb65c7
+guid: 218d3bbcf51d0584dae84122253d92c4
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -9,8 +9,13 @@ ModelImporter:
     2100002: lambert2
     2300000: //RootNode
     3300000: //RootNode
-    4300000: supportbeam
+    4300000: rug
   externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: cf140db9b1ce142448ef94457a374aeb, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule

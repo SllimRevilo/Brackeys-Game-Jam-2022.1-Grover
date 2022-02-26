@@ -1,15 +1,14 @@
 fileFormatVersion: 2
-guid: c9ce33319dd5825418b7f5218ebb65c7
+guid: 1e481553092dd7e49a1b8ca09cf58a19
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: lambert1
-    2100002: lambert2
+    2100000: lambert2
     2300000: //RootNode
     3300000: //RootNode
-    4300000: supportbeam
+    4300000: wallBorder
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -45,7 +44,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 2.5
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     importVisibility: 1
