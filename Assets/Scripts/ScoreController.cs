@@ -9,8 +9,7 @@ public class ScoreController : Singleton<ScoreController>
 	public float LengthAllowedForHitCheckPoint = 1f;
 
 
-	private Vector2[] _checkPoints;
-	private bool[] _checks;
+	private List<Vector2> _checkPoints;
 	private float _checkPointsLength;
 
 	public Transform[] BombCheckpoints;
@@ -20,17 +19,30 @@ public class ScoreController : Singleton<ScoreController>
 	public Transform[] PaintBrushCheckpoints;
 	public Transform[] OnigiriCheckpoints;
 
-	private Dictionary<DrawingItem, float> DrawingLengths = new Dictionary<DrawingItem, float>()
+	private Dictionary<DrawingItem, float> _drawingLengths = new Dictionary<DrawingItem, float>()
 	{
 		{DrawingItem.bomb, 5.682515f},
-		{DrawingItem.sword, 0f},
 		{DrawingItem.hat, 5.036776f},
-		{DrawingItem.chair, 0f},
 		{DrawingItem.lantern, 0f},
 		{DrawingItem.onigiri, 0f},
 		{DrawingItem.paintbrush, 0f},
 		{DrawingItem.teacup, 4.396302f}
 	};
+
+	private Dictionary<DrawingItem, List<Vector2>> _drawingCheckpoints;
+
+	public void Start()
+	{
+		_drawingCheckpoints = new Dictionary<DrawingItem, List<Vector2>>
+		{
+			{DrawingItem.bomb, ConvertVector3ArrayToVector2Array(BombCheckpoints)},
+			{DrawingItem.hat, ConvertVector3ArrayToVector2Array(HatCheckpoints)},
+			{DrawingItem.lantern, ConvertVector3ArrayToVector2Array(LanternCheckpoints)},
+			{DrawingItem.onigiri, ConvertVector3ArrayToVector2Array(OnigiriCheckpoints)},
+			{DrawingItem.paintbrush, ConvertVector3ArrayToVector2Array(PaintBrushCheckpoints)},
+			{DrawingItem.teacup, ConvertVector3ArrayToVector2Array(CupCheckpoints)}
+		};
+	}
 
 	/// <summary>
 	/// checks each checkpoint to update it
@@ -39,15 +51,23 @@ public class ScoreController : Singleton<ScoreController>
 	public void UpdateCheckPoint(Vector2 point)
 	{
 		// for each checkpoint
-		for(int i = 0; i < _checkPoints.Length; i++)
+		for(int i = 0; i < _checkPoints.Count; i++)
 		{
 			// if checkpoint not hit and within distance set to true
-			if(!_checks[i] && Vector2.Distance(point, _checkPoints[i]) <= LengthAllowedForHitCheckPoint)
+			if(Vector2.Distance(point, _checkPoints[i]) <= LengthAllowedForHitCheckPoint)
 			{
-				_checks[i] = true;
+				_checkPoints.RemoveAt(i);
+				i--;
 			}
 		}
 	}
+
+	public void scoreshit()
+    {
+		SetNewCheckPoints(DrawingItem.bomb);
+		int score = ScoreDrawing(Drawing.Instance.FinalPoints());
+		Debug.Log(score);
+    }
 
 	/// <summary>
 	/// Scores the drawing from 0 - 100
@@ -57,8 +77,20 @@ public class ScoreController : Singleton<ScoreController>
 	/// <returns></returns>
 	public int ScoreDrawing(List<List<Vector2>> drawnLines)
 	{
+		// check the checkpoints to see if they were reached
+		foreach(List<Vector2> list in drawnLines)
+        {
+			foreach(Vector2 point in list)
+            {
+				UpdateCheckPoint(point);
+            }
+        }
+
+		// if not completed the score is 0
 		if(!IsDrawingComplete())
 		{
+			Debug.Log(_checkPoints.Count);
+			Debug.Log("SAEDRTHDFGSHTSHTDFGG");
 			return 0;
 		}
 
@@ -67,7 +99,10 @@ public class ScoreController : Singleton<ScoreController>
 
 		// gets how far off the two are from each other as a percent less than 100
 		float percentOff = 0;
-		
+
+		Debug.Log(_checkPointsLength);
+		Debug.Log(totalScoreValue);
+
 		if(_checkPointsLength > totalScoreValue)
 		{
 			percentOff = totalScoreValue / _checkPointsLength;
@@ -96,13 +131,8 @@ public class ScoreController : Singleton<ScoreController>
 	/// <param name="newCheckpoints"></param>
 	public void SetNewCheckPoints(DrawingItem newDrawing)
 	{
-		switch(newDrawing)
-        {
-			case DrawingItem.bomb:
-				_checkPointsLength = DrawingLengths[DrawingItem.bomb];
-				break;
-        }
-
+		_checkPointsLength = _drawingLengths[newDrawing];
+		_checkPoints = _drawingCheckpoints[newDrawing];
 	}
 	
 	
@@ -127,17 +157,22 @@ public class ScoreController : Singleton<ScoreController>
 	/// <returns>true if done</returns>
 	public bool IsDrawingComplete()
 	{
-		// for each check we need to make
-		for(int i = 0; i < _checks.Length; i++)
-		{
-			// if one is false
-			if(!_checks[i])
-			{
-				// then we are not complete
-				return false;
-			}
-		}
-		// otherwise we are complete
-		return true;
+		return _checkPoints.Count == 0;
 	}
+	/// <summary>
+	/// Converts a transform array to a vec 2 array
+	/// uses the x and z axis
+	/// </summary>
+	/// <param name="array">array to change</param>
+	/// <returns>a vector 2 array</returns>
+	public List<Vector2> ConvertVector3ArrayToVector2Array(Transform[] array)
+    {
+		List<Vector2> newList = new List<Vector2>();
+		for(int i = 0; i < array.Length; i++)
+        {
+			Vector2 vec = new Vector2(array[i].transform.position.x, array[i].transform.position.z);
+			newList.Add(vec);
+        }
+		return newList;
+    }
 }
