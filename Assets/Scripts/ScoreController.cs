@@ -5,7 +5,7 @@ using UnityEngine;
 public class ScoreController : Singleton<ScoreController> 
 {
 	public float LengthBetweenDrawnPoints;
-	public float PercentAccuracyForPerfect = .9f;
+	public float PercentAccuracyForPerfect = .95f;
 	public float LengthAllowedForHitCheckPoint = 1f;
 
 
@@ -14,17 +14,22 @@ public class ScoreController : Singleton<ScoreController>
 	private float _checkPointsLength;
 
 	public Transform[] BombCheckpoints;
+	public Transform[] HatCheckpoints;
+	public Transform[] CupCheckpoints;
+	public Transform[] LanternCheckpoints;
+	public Transform[] PaintBrushCheckpoints;
+	public Transform[] OnigiriCheckpoints;
 
 	private Dictionary<DrawingItem, float> DrawingLengths = new Dictionary<DrawingItem, float>()
 	{
 		{DrawingItem.bomb, 5.682515f},
 		{DrawingItem.sword, 0f},
-		{DrawingItem.hat, 0f},
+		{DrawingItem.hat, 5.036776f},
 		{DrawingItem.chair, 0f},
 		{DrawingItem.lantern, 0f},
 		{DrawingItem.onigiri, 0f},
 		{DrawingItem.paintbrush, 0f},
-		{DrawingItem.teacup, 0f}
+		{DrawingItem.teacup, 4.396302f}
 	};
 
 	/// <summary>
