@@ -22,29 +22,29 @@ public class Library : Singleton<Library>
     #region Text
     private Dictionary<DrawingItem, string> _prompt = new Dictionary<DrawingItem, string>()
     {
-        {DrawingItem.bomb, "I need a bomb to go fishing with! Now give me one!" },
-        {DrawingItem.sword, "I must have a sword to practice my kata with." },
-        {DrawingItem.hat, "I have a big date tonight and simply must look good… A hat shall do nicely, no?" },
-        {DrawingItem.chair,  "I have to stand at my shop all day… I would love a chair to sit in."},
-        {DrawingItem.lantern, "I cannot read when the sun goes down. Maybe a lantern would help?" },
-        {DrawingItem.onigiri, "I’m always hungry. If only I had some food that would be easy to carry with me and eat…" },
+        {DrawingItem.bomb, "I need a bomb to go fishing with!\nNow give me one!" },
+        {DrawingItem.sword, "I must have a sword to\npractice my kata with." },
+        {DrawingItem.hat, "I have a big date tonight and\nsimply must look good…\nA hat shall do nicely, no?" },
+        {DrawingItem.chair,  "I have to stand at my shop all day…\nI would love a chair to sit in."},
+        {DrawingItem.lantern, "I cannot read when the sun\ngoes down. Maybe a lantern\nwould help?" },
+        {DrawingItem.onigiri, "I’m always hungry. If only I\nhad some food that would\nbe easy to carry with me and eat…" },
         {DrawingItem.paintbrush, "I need something to paint with." },
-        {DrawingItem.teacup, "My mother is coming over for tea, and she’s very judgemental…" },
-        {DrawingItem.scroll, "I've run out of paper to write my novel on!" }
+        {DrawingItem.teacup, "My mother is coming over for tea,\nand she’s very judgemental…" },
+        {DrawingItem.scroll, "I've run out of paper\nto write my novel on!" }
     };
 
     private Dictionary<DrawingItem, string[]> _scores = new Dictionary<DrawingItem, string[]>()
     {
         {DrawingItem.bomb, new string[]
             {
-                "This certainly looks…round, I guess.",
+                "This certainly looks…round,\nI guess.",
                 "Good enough for fishin'!",
-                "It's perfect! Shiny! Round! KABOOM!"
+                "It's perfect! Shiny! Round!\nKABOOM!"
             }
         },
         {DrawingItem.sword, new string[]
             {
-                "I'm not sure I can cut anything with this.",
+                "I'm not sure I can cut\nanything with this.",
                 "It's blunted, but good for practice.",
                 "What a sword! You must be a master!"
             }
@@ -52,7 +52,7 @@ public class Library : Singleton<Library>
         {DrawingItem.hat, new string[]
             {
                 "Do you not have eyes?",
-                "Good enough to cover my head, I suppose.",
+                "Good enough to cover\nmy head, I suppose.",
                 "Tre Magnifique! It's beautiful!"
             }
         },
@@ -67,35 +67,35 @@ public class Library : Singleton<Library>
             {
                 "Maybe I should have invested in glasses instead.",
                 "This will do.",
-                "So bright! So pretty! Now I can see!"
+                "So bright! So pretty!\nNow I can see!"
             }
         },
         {DrawingItem.onigiri, new string[]
             {
                 "...Is this edible?",
                 "Mmm...rice balls...",
-                "Ah! It's delicious! ...Is it too late to ask for another?"
+                "Ah! It's delicious! ...\nIs it too late to ask for another?"
             }
         },
         {DrawingItem.paintbrush, new string[]
             {
-                "I'm not sure I can even dip this in ink.",
-                "This looks more suited to ink than paint...",
-                "Oh! Now I can create my masterpiece!"
+                "I'm not sure I can even\ndip this in ink.",
+                "This looks more suited\nto ink than paint...",
+                "Oh! Now I can create\nmy masterpiece!"
             }        
         },
         {DrawingItem.teacup, new string[]
             {
-                "Looks like Mother will mock me again...",
-                "Ah, hopefully she will have nothing to say about this.",
-                "How beautiful! Now Mother will praise me for sure!"
+                "Looks like Mother will mock me\nagain...",
+                "Ah, hopefully she will have\nnothing to say about this.",
+                "How beautiful! Now Mother\nwill praise me for sure!"
             }
         },
         {DrawingItem.scroll, new string[]
             {
-                "I'm not sure this could be used even as toilet paper.",
-                "I guess I'll have to write really tiny to fit it all...",
-                "How beautiful! How smooth! Truly worthy of literature!"
+                "I'm not sure this could be\nused even as toilet paper.",
+                "I guess I'll have to write\nreally tiny to fit it all...",
+                "How beautiful! How smooth!\nTruly worthy of literature!"
             }
         }
     };
