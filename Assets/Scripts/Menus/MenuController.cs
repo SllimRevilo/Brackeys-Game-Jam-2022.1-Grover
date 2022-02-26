@@ -21,6 +21,8 @@ public class MenuController : MonoBehaviour {
 	public void NewGame()
     {
 		Menu.SetActive(false);
+		AudioManager.Instance.RandomizeTrack();
+		AudioManager.Instance.AmbienceVolume();
     }
 
 	public void ClearProgress()

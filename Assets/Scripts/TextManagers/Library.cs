@@ -3,21 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+public enum DrawingItem
+{
+    bomb,
+    sword,
+    hat,
+    chair,
+    lantern,
+    onigiri,
+    paintbrush,
+    teacup,
+    scroll
+}
+
 public class Library : Singleton<Library>
 {
-
-    public enum DrawingItem
-    {
-        bomb,
-        sword,
-        hat,
-        chair,
-        lantern,
-        onigiri,
-        paintbrush,
-        teacup,
-        scroll
-    }
 
     #region Text
     private Dictionary<DrawingItem, string> _prompt = new Dictionary<DrawingItem, string>()
