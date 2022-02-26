@@ -3,21 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public enum DrawingItem
-{
-    bomb,
-    sword,
-    hat,
-    chair,
-    lantern,
-    onigiri,
-    paintbrush,
-    teacup
-}
 public class Library : Singleton<Library>
 {
 
-    
+    public enum DrawingItem
+    {
+        bomb,
+        sword,
+        hat,
+        chair,
+        lantern,
+        onigiri,
+        paintbrush,
+        teacup,
+        scroll
+    }
 
     #region Text
     private Dictionary<DrawingItem, string> _prompt = new Dictionary<DrawingItem, string>()
@@ -29,7 +29,8 @@ public class Library : Singleton<Library>
         {DrawingItem.lantern, "I cannot read when the sun goes down. Maybe a lantern would help?" },
         {DrawingItem.onigiri, "I’m always hungry. If only I had some food that would be easy to carry with me and eat…" },
         {DrawingItem.paintbrush, "I need something to paint with." },
-        {DrawingItem.teacup, "My mother is coming over for tea, and she’s very judgemental…" }
+        {DrawingItem.teacup, "My mother is coming over for tea, and she’s very judgemental…" },
+        {DrawingItem.scroll, "I've run out of paper to write my novel on!" }
     };
 
     private Dictionary<DrawingItem, string[]> _scores = new Dictionary<DrawingItem, string[]>()
@@ -88,6 +89,13 @@ public class Library : Singleton<Library>
                 "Looks like Mother will mock me again...",
                 "Ah, hopefully she will have nothing to say about this.",
                 "How beautiful! Now Mother will praise me for sure!"
+            }
+        },
+        {DrawingItem.scroll, new string[]
+            {
+                "I'm not sure this could be used even as toilet paper.",
+                "I guess I'll have to write really tiny to fit it all...",
+                "How beautiful! How smooth! Truly worthy of literature!"
             }
         }
     };
