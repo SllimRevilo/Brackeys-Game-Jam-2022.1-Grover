@@ -13,48 +13,18 @@ public class ScoreController : Singleton<ScoreController>
 	private bool[] _checks;
 	private float _checkPointsLength;
 
-	private Dictionary<DrawingItem, Vector2[]> DrawingCheckpoints = new Dictionary<DrawingItem, Vector2[]>()
+	public Transform[] BombCheckpoints;
+
+	private Dictionary<DrawingItem, float> DrawingLengths = new Dictionary<DrawingItem, float>()
 	{
-		{DrawingItem.bomb, new Vector2[]
-			{
-
-			}
-		},
-		{DrawingItem.sword, new Vector2[]
-			{
-
-			}
-		},
-		{DrawingItem.hat, new Vector2[]
-			{
-
-			}
-		},
-		{DrawingItem.chair, new Vector2[]
-			{
-
-			}
-		},
-		{DrawingItem.lantern, new Vector2[]
-			{
-
-			}
-		},
-		{DrawingItem.onigiri, new Vector2[]
-			{
-
-			}
-		},
-		{DrawingItem.paintbrush, new Vector2[]
-			{
-
-			}
-		},
-		{DrawingItem.teacup, new Vector2[]
-			{
-
-			}
-		}
+		{DrawingItem.bomb, 5.682515f},
+		{DrawingItem.sword, 0f},
+		{DrawingItem.hat, 0f},
+		{DrawingItem.chair, 0f},
+		{DrawingItem.lantern, 0f},
+		{DrawingItem.onigiri, 0f},
+		{DrawingItem.paintbrush, 0f},
+		{DrawingItem.teacup, 0f}
 	};
 
 	/// <summary>
@@ -92,16 +62,16 @@ public class ScoreController : Singleton<ScoreController>
 
 		// gets how far off the two are from each other as a percent less than 100
 		float percentOff = 0;
-		/*
-		if(totalCheckValue > totalScoreValue)
+		
+		if(_checkPointsLength > totalScoreValue)
 		{
-			percentOff = totalScoreValue / totalCheckValue;
+			percentOff = totalScoreValue / _checkPointsLength;
 		}
 		else
 		{
-			percentOff = totalCheckValue / totalScoreValue;
+			percentOff = _checkPointsLength / totalScoreValue;
 		}
-		*/
+		
 		// divide the percent off by what is needed for perfect to get a score
 		float score = percentOff / PercentAccuracyForPerfect;
 
@@ -121,9 +91,13 @@ public class ScoreController : Singleton<ScoreController>
 	/// <param name="newCheckpoints"></param>
 	public void SetNewCheckPoints(DrawingItem newDrawing)
 	{
-		//CheckPoints = newCheckpoints;
-		// this will need to be different if length between points is different between the given line and the traced line
-		_checkPointsLength = _checkPoints.Length;
+		switch(newDrawing)
+        {
+			case DrawingItem.bomb:
+				_checkPointsLength = DrawingLengths[DrawingItem.bomb];
+				break;
+        }
+
 	}
 	
 	
