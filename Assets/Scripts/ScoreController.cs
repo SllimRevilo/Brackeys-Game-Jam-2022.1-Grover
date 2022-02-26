@@ -54,6 +54,7 @@ public class ScoreController : Singleton<ScoreController>
 		for(int i = 0; i < _checkPoints.Count; i++)
 		{
 			// if checkpoint not hit and within distance set to true
+			Debug.Log(point + "  -----  " + _checkPoints[i]);
 			if(Vector2.Distance(point, _checkPoints[i]) <= LengthAllowedForHitCheckPoint)
 			{
 				_checkPoints.RemoveAt(i);
@@ -64,7 +65,7 @@ public class ScoreController : Singleton<ScoreController>
 
 	public void scoreshit()
     {
-		SetNewCheckPoints(DrawingItem.bomb);
+		SetNewCheckPoints(DrawingItem.teacup);
 		int score = ScoreDrawing(Drawing.Instance.FinalPoints());
 		Debug.Log(score);
     }
@@ -90,12 +91,12 @@ public class ScoreController : Singleton<ScoreController>
 		if(!IsDrawingComplete())
 		{
 			Debug.Log(_checkPoints.Count);
-			Debug.Log("SAEDRTHDFGSHTSHTDFGG");
 			return 0;
 		}
-
+		Debug.Log(LengthBetweenDrawnPoints);
+		Debug.Log((float)GetScoresLength(drawnLines));
 		// gets total length of lines for the checkpoints and the drawing
-		float totalScoreValue = LengthBetweenDrawnPoints * GetScoresLength(drawnLines);
+		float totalScoreValue = LengthBetweenDrawnPoints * (float)GetScoresLength(drawnLines);
 
 		// gets how far off the two are from each other as a percent less than 100
 		float percentOff = 0;
@@ -170,7 +171,8 @@ public class ScoreController : Singleton<ScoreController>
 		List<Vector2> newList = new List<Vector2>();
 		for(int i = 0; i < array.Length; i++)
         {
-			Vector2 vec = new Vector2(array[i].transform.position.x, array[i].transform.position.z);
+			Vector2 vec = new Vector2(array[i].transform.position.x, array[i].transform.position.y);
+
 			newList.Add(vec);
         }
 		return newList;
