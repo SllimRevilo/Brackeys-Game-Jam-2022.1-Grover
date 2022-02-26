@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager> {
     public GameObject[] Camera;
+
+    private DrawingItem _currentItem;
     private enum CamName
     {
         Intro = 0,
@@ -33,7 +35,8 @@ public class GameManager : Singleton<GameManager> {
     {
         CharacterController.Instance.EnterCharacter(() =>
         {
-            //TODO: Select items and send Tanuki to work 💕
+            _currentItem = (DrawingItem)Random.Range(0, 8);
+
         });
     }
 

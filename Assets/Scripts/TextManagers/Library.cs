@@ -8,11 +8,11 @@ public enum DrawingItem
     bomb,
     sword,
     hat,
-    chair,
     lantern,
     onigiri,
     paintbrush,
-    teacup
+    teacup,
+    chair
 }
 public class Library : Singleton<Library>
 {
