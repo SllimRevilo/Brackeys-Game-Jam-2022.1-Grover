@@ -23,9 +23,9 @@ public class ScoreController : Singleton<ScoreController>
 	{
 		{DrawingItem.bomb, 5.682515f},
 		{DrawingItem.hat, 5.036776f},
-		{DrawingItem.lantern, 0f},
-		{DrawingItem.onigiri, 0f},
-		{DrawingItem.paintbrush, 0f},
+		{DrawingItem.lantern, 5.821858f},
+		{DrawingItem.onigiri, 4.874483f},
+		{DrawingItem.paintbrush, 5.213915f},
 		{DrawingItem.teacup, 4.396302f}
 	};
 
@@ -63,13 +63,6 @@ public class ScoreController : Singleton<ScoreController>
 		}
 	}
 
-	public void scoreshit()
-    {
-		SetNewCheckPoints(DrawingItem.teacup);
-		int score = ScoreDrawing(Drawing.Instance.FinalPoints());
-		Debug.Log(score);
-    }
-
 	/// <summary>
 	/// Scores the drawing from 0 - 100
 	/// Returns 0 if all checks were not met
@@ -90,19 +83,13 @@ public class ScoreController : Singleton<ScoreController>
 		// if not completed the score is 0
 		if(!IsDrawingComplete())
 		{
-			Debug.Log(_checkPoints.Count);
 			return 0;
 		}
-		Debug.Log(LengthBetweenDrawnPoints);
-		Debug.Log((float)GetScoresLength(drawnLines));
 		// gets total length of lines for the checkpoints and the drawing
 		float totalScoreValue = LengthBetweenDrawnPoints * (float)GetScoresLength(drawnLines);
 
 		// gets how far off the two are from each other as a percent less than 100
 		float percentOff = 0;
-
-		Debug.Log(_checkPointsLength);
-		Debug.Log(totalScoreValue);
 
 		if(_checkPointsLength > totalScoreValue)
 		{
