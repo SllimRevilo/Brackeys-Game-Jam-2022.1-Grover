@@ -98,6 +98,8 @@ public class Drawing : Singleton<Drawing> {
             Destroy(AllLineObjects[i]);
         }
         AllLineObjects.Clear();
+
+        Lines.Clear();
     }
 
     private void CreateBrush() 

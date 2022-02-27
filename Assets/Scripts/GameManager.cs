@@ -61,12 +61,13 @@ public class GameManager : Singleton<GameManager> {
                 Tanuki.transform.DORotate(new Vector3(0f, 0f, 0f), .5f)
                 .OnComplete(() =>
                 {
-                    
-                    //TODO: Add scoring effect idk where tho 💕
-                    CharacterController.Instance.ExitCharacter(score, ()=> {
-                        PrizeContainerController.Instance.ExitWin();
+                    string customerResponse = Library.Instance.RetrieveScore(_currentItem, score);
+                    TextWriter.Instance.WriteLine(CustomerText, customerResponse, () =>
+                    {
                         ExitCustomer(score);
                     });
+                    //TODO: Add scoring effect idk where tho 💕
+                    
                 });
 
             });
@@ -75,9 +76,9 @@ public class GameManager : Singleton<GameManager> {
 
     private void ExitCustomer(int score)
     {
-        string customerResponse = Library.Instance.RetrieveScore(_currentItem, score);
-        TextWriter.Instance.WriteLine(CustomerText, customerResponse, () =>
+        CharacterController.Instance.ExitCharacter(score, () =>
         {
+            PrizeContainerController.Instance.ExitWin();
             DOTween.Sequence()
                 .AppendInterval(.25f)
                 .AppendCallback(CharacterEnter);
