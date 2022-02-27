@@ -46,10 +46,11 @@ public class CharacterController :Singleton<CharacterController> {
 	public void EnterCharacter(System.Action onComplete)
     {
 		currentCustomer = (CharacterType)Random.Range(1,4);
-		GetCharacter(currentCustomer, true);
 		DOTween.Sequence()
 			.AppendCallback(() =>
 			{
+				GetCharacter(currentCustomer, true);
+
 				DoCharacterAction(currentCustomer, AnimationType.Enter);
 			})
 			.AppendInterval(_animLengths[(int)AnimationType.Enter])
