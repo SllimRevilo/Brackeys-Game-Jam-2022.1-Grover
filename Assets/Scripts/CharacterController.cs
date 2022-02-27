@@ -36,7 +36,7 @@ public class CharacterController :Singleton<CharacterController> {
 	private string _exitAnimationName = "walkOut";
 
 	//TODO: Fix the anim lenght array 💕
-	private float[] _animLengths = new float[] { 2f/*default length*/, 1f/*bow length*/, 1f/*sad length*/, 1f/*Happy length*/, 1f/*enter length*/, 1.5f/*exit Length*/ };
+	private float[] _animLengths = new float[] { 2f/*default length*/, 1f/*bow length*/, 1f/*sad length*/, 1f/*Happy length*/, 1f/*enter length*/, 1.7f/*exit Length*/ };
 	public CharacterType currentCustomer;
 
 	/// <summary>

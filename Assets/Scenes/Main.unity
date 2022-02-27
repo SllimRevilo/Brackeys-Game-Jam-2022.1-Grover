@@ -4409,7 +4409,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1840967584993874, guid: 18dc9d678f93e56499de21cc0ce27293, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 18dc9d678f93e56499de21cc0ce27293, type: 2}
@@ -4878,7 +4878,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 422660457}
-  Timer: 90
+  Timer: 30
 --- !u!4 &1842749453 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4853755441778970, guid: 245e81529bebf3442bd3dc5e31f34b62,
