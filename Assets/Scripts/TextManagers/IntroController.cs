@@ -41,9 +41,10 @@ public class IntroController : MonoBehaviour {
 		Slideshow[0].SetActive(true);
 		for(int i = 1; i < Slideshow.Length; i++)
         {
-			Slideshow[i].GetComponent<Image>().color = Color.black;
+			//Slideshow[i].GetComponent<Image>().color = Color.black;
 			Slideshow[i].SetActive(false);
         }
+		PlayIntro();
     }
 
 	void PlayIntro()
@@ -51,12 +52,12 @@ public class IntroController : MonoBehaviour {
 		_transition = DOTween.Sequence();
 		_transition.AppendCallback(() =>
 		{
-			Slideshow[0].GetComponent<Image>().DOColor(Color.black, _transTime);
+			//Slideshow[0].GetComponent<Image>().DOColor(Color.black, _transTime);
 		}).AppendInterval(_transTime).AppendCallback(() =>
 		{
 			Slideshow[0].SetActive(false);
 			Slideshow[_slideIndex++].SetActive(true);
-			Slideshow[_slideIndex].GetComponent<Image>().DOColor(Color.white, _transTime);
+			//Slideshow[_slideIndex].GetComponent<Image>().DOColor(Color.white, _transTime);
 		}).OnComplete(() => { TextWriter.Instance.WriteLine(TextObject, _intro[_lineIndex++]); _inIntro = true; });
     }
 
@@ -65,12 +66,12 @@ public class IntroController : MonoBehaviour {
 		_transition = DOTween.Sequence();
 		_transition.AppendCallback(() =>
 		{
-			Slideshow[_slideIndex].GetComponent<Image>().DOColor(Color.black, _transTime);
+			//Slideshow[_slideIndex].GetComponent<Image>().DOColor(Color.black, _transTime);
 		}).AppendInterval(_transTime).AppendCallback(() =>
 		{
 			Slideshow[_slideIndex].SetActive(false);
 			Slideshow[_slideIndex++].SetActive(true);
-			Slideshow[_slideIndex].GetComponent<Image>().DOColor(Color.white, _transTime);
+			//Slideshow[_slideIndex].GetComponent<Image>().DOColor(Color.white, _transTime);
 		}).OnComplete(() => { TextWriter.Instance.WriteLine(TextObject, _intro[_lineIndex++]); _inIntro = true; });
 	}
 
