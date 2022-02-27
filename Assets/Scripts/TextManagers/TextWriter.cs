@@ -26,7 +26,7 @@ public class TextWriter : Singleton<TextWriter> {
 		_typeWriter = DOTween.Sequence();
 	}
 
-    public void WriteLine(Text txt, string line, System.Action callback = null, bool inBubble = true)
+    public void WriteLine(Text txt, string line, System.Action callback = null, bool inBubble = true, float callbackDelay = 0f)
     {
 		if (CanType)
 		{
@@ -60,15 +60,15 @@ public class TextWriter : Singleton<TextWriter> {
 				Skippable = false; 
 				if(callback != null)
                 {
-					callback();
+					DOTween.Sequence().AppendInterval(callbackDelay).AppendCallback(() => callback());
                 }
 			});
 		}
     }
 
-	public void TextBubbleFinished (Text txt, System.Action callback = null)
+	public void TextBubbleFinished ()
     {
-		txt.text = "";
+		_text.text = "";
 		Panel.GetComponent<Image>().enabled = false;
 	}
 

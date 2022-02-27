@@ -15,9 +15,12 @@ public class IntroController : MonoBehaviour {
 	private string[] _intro = new string[]
 	{
 		"Somewhere in a forest lives a little raccoon dog named Tan Chuki.",
-		"A raccoon dog’s life is lots of fun!  They play with magic, and eat lots of nuts and berries.",
-		"Recently Tan Chuki has heard of this thing called “money.” Other animals use it to buy lots of stuff!",
-		"Tan Chuki wants lots of stuff too. He wants to throw a whole party with his other raccoon dog friends!",
+		"A raccoon dog’s life is lots of fun!",
+		"They play with magic, and eat lots of nuts and berries.",
+		"Recently Tan Chuki has heard of this thing called “money.”",
+		" Other animals use it to buy lots of stuff!",
+		"Tan Chuki wants lots of stuff too.",
+		" He wants to throw a whole party with his other raccoon dog friends!",
 		"So, Tan Chuki goes and opens up a small shop in a little town…",
 		"But what do raccoon dogs sell?",
 		"“Ah!” thinks Tan Chuki. “I will use my magic to create things for people!”",
@@ -49,6 +52,7 @@ public class IntroController : MonoBehaviour {
 
 	void PlayIntro()
     {
+		/*
 		_transition = DOTween.Sequence();
 		_transition.AppendCallback(() =>
 		{
@@ -59,10 +63,45 @@ public class IntroController : MonoBehaviour {
 			Slideshow[_slideIndex++].SetActive(true);
 			//Slideshow[_slideIndex].GetComponent<Image>().DOColor(Color.white, _transTime);
 		}).OnComplete(() => { TextWriter.Instance.WriteLine(TextObject, _intro[_lineIndex++]); _inIntro = true; });
-    }
+		*/
+
+		TextWriter.Instance.WriteLine(TextObject, _intro[_lineIndex++],()=> {
+			TextWriter.Instance.WriteLine(TextObject, _intro[_lineIndex++], () => {
+				TextWriter.Instance.WriteLine(TextObject, _intro[_lineIndex++], () => {
+					TransitionSlides();
+					TextWriter.Instance.WriteLine(TextObject, _intro[_lineIndex++], () => {
+						TextWriter.Instance.WriteLine(TextObject, _intro[_lineIndex++], () => {
+							TextWriter.Instance.WriteLine(TextObject, _intro[_lineIndex++], () => {
+								TransitionSlides();
+								TextWriter.Instance.WriteLine(TextObject, _intro[_lineIndex++], () => {
+									TextWriter.Instance.WriteLine(TextObject, _intro[_lineIndex++], () => {
+										TextWriter.Instance.WriteLine(TextObject, _intro[_lineIndex++], () => {
+											TransitionSlides();
+											TextWriter.Instance.WriteLine(TextObject, _intro[_lineIndex++], () => {
+												TextWriter.Instance.WriteLine(TextObject, _intro[_lineIndex++], () => {
+													TextWriter.Instance.WriteLine(TextObject, _intro[_lineIndex++], () => {
+														TextWriter.Instance.WriteLine(TextObject, _intro[_lineIndex++], () => {
+															EndIntro();
+														}, false, .5f);
+													}, false, .5f);
+												}, false, .5f);
+											}, false, .5f);
+										}, false, .5f);
+									}, false, .5f);
+								}, false, .5f);
+							}, false, .5f);
+						}, false, .5f);
+					}, false, .5f);
+				}, false, .5f);
+			}, false, .5f);
+		},false, .5f);
+	}
 
 	public void TransitionSlides()
     {
+		Slideshow[_slideIndex].SetActive(false);
+		Slideshow[_slideIndex++].SetActive(true);
+		/*
 		_transition = DOTween.Sequence();
 		_transition.AppendCallback(() =>
 		{
@@ -73,6 +112,7 @@ public class IntroController : MonoBehaviour {
 			Slideshow[_slideIndex++].SetActive(true);
 			//Slideshow[_slideIndex].GetComponent<Image>().DOColor(Color.white, _transTime);
 		}).OnComplete(() => { TextWriter.Instance.WriteLine(TextObject, _intro[_lineIndex++]); _inIntro = true; });
+		*/
 	}
 
 	public void SkipButton()
@@ -116,7 +156,7 @@ public class IntroController : MonoBehaviour {
 	
 	private void EndIntro()
     {
-		GameManager.Instance.StartGame();
 		gameObject.SetActive(false);
+		TextWriter.Instance.TextBubbleFinished();
 	}
 }
