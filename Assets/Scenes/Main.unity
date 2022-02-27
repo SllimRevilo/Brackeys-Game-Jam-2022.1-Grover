@@ -4161,14 +4161,11 @@ MonoBehaviour:
   PrizeMaterial: {fileID: 2100000, guid: f018329adf758b7418980395aa0bf47a, type: 2}
   PrizeTexture:
   - {fileID: 2800000, guid: bdc2a931a6c49fa4ca89652c806a5efe, type: 3}
-  - {fileID: 0}
   - {fileID: 2800000, guid: 748e25b4f5cd0a745b86c05fe48bba3a, type: 3}
-  - {fileID: 0}
   - {fileID: 2800000, guid: 1c5643038c9bb0f4c93cf1a2cedb94cc, type: 3}
   - {fileID: 2800000, guid: 0851afa8575b88542a646873c7c555c3, type: 3}
   - {fileID: 2800000, guid: 6452560569e550e42a80f82032b9d920, type: 3}
   - {fileID: 2800000, guid: ae1950c6873bc0a45a0aaaef4e1e95ec, type: 3}
-  - {fileID: 0}
 --- !u!4 &1570384280 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4083920365076066, guid: 245e81529bebf3442bd3dc5e31f34b62,

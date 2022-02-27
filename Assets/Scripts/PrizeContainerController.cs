@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PrizeContainerController : MonoBehaviour {
+public class PrizeContainerController : Singleton<PrizeContainerController> {
 
 	public Animator WinAnimator;
 	private string _winIn = "prizeWinIn";

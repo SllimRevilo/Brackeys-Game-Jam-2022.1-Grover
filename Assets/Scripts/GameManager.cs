@@ -52,6 +52,7 @@ public class GameManager : Singleton<GameManager> {
             TransitionCameras(CamName.Main, CamName.Drawing);
             DrawingController.Instance.StartDrawing(_currentItem, () =>
             {
+                PrizeContainerController.Instance.PlayWin(_currentItem);
                 ScoreController.Instance.SetNewCheckPoints(_currentItem);
                 int score = ScoreController.Instance.ScoreDrawing(Drawing.Instance.FinalPoints());
                 score = Library.Instance.DetermineScore(score);
@@ -60,9 +61,12 @@ public class GameManager : Singleton<GameManager> {
                 Tanuki.transform.DORotate(new Vector3(0f, 0f, 0f), .5f)
                 .OnComplete(() =>
                 {
-                    ExitCustomer(score);
+                    
                     //TODO: Add scoring effect idk where tho 💕
-                    CharacterController.Instance.ExitCharacter(score);
+                    CharacterController.Instance.ExitCharacter(score, ()=> {
+                        PrizeContainerController.Instance.ExitWin();
+                        ExitCustomer(score);
+                    });
                 });
 
             });
