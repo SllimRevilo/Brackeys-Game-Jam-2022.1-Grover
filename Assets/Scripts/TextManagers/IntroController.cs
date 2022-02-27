@@ -1,11 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class IntroController : MonoBehaviour {
 
 	public Text TextObject;
+	public GameObject[] Slideshow;
+
+	private Sequence _transition;
 
 	private string[] _intro = new string[]
 	{
@@ -22,30 +27,85 @@ public class IntroController : MonoBehaviour {
 	};
 
 	private int _lineIndex;
+	private int _slideIndex;
+	bool _inIntro = false;
+
+    private int[] _thresh = new int[] { 2, 4, 6 };
+
+	private float _transTime = 0.25f;
 
 	void Start()
     {
 		_lineIndex = 0;
+		_slideIndex = 1;
+		Slideshow[0].SetActive(true);
+		for(int i = 1; i < Slideshow.Length; i++)
+        {
+			//Slideshow[i].GetComponent<Image>().color = Color.black;
+			Slideshow[i].SetActive(false);
+        }
 		PlayIntro();
     }
 
 	void PlayIntro()
     {
-		TextWriter.Instance.WriteLine(TextObject, _intro[_lineIndex++]);
+		_transition = DOTween.Sequence();
+		_transition.AppendCallback(() =>
+		{
+			//Slideshow[0].GetComponent<Image>().DOColor(Color.black, _transTime);
+		}).AppendInterval(_transTime).AppendCallback(() =>
+		{
+			Slideshow[0].SetActive(false);
+			Slideshow[_slideIndex++].SetActive(true);
+			//Slideshow[_slideIndex].GetComponent<Image>().DOColor(Color.white, _transTime);
+		}).OnComplete(() => { TextWriter.Instance.WriteLine(TextObject, _intro[_lineIndex++]); _inIntro = true; });
+    }
+
+	public void TransitionSlides()
+    {
+		_transition = DOTween.Sequence();
+		_transition.AppendCallback(() =>
+		{
+			//Slideshow[_slideIndex].GetComponent<Image>().DOColor(Color.black, _transTime);
+		}).AppendInterval(_transTime).AppendCallback(() =>
+		{
+			Slideshow[_slideIndex].SetActive(false);
+			Slideshow[_slideIndex++].SetActive(true);
+			//Slideshow[_slideIndex].GetComponent<Image>().DOColor(Color.white, _transTime);
+		}).OnComplete(() => { TextWriter.Instance.WriteLine(TextObject, _intro[_lineIndex++]); _inIntro = true; });
+	}
+
+	public void SkipButton()
+    {
+		_transition.Kill(true);
+		foreach(GameObject go in Slideshow)
+        {
+			go.SetActive(false);
+        }
     }
 
 	void FixedUpdate()
     {
-		if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse0))
+		if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse0)) && _inIntro)
 		{
 			if (TextWriter.CanType)
 			{
 				if (_lineIndex < _intro.Length)
-					TextWriter.Instance.WriteLine(TextObject, _intro[_lineIndex++]);
-                else
-                {
+				{
+					if (!_thresh.Contains(_lineIndex))
+					{
+						TextWriter.Instance.WriteLine(TextObject, _intro[_lineIndex++]);
+					}
+                    else
+                    {
+						_inIntro = false;
+						TransitionSlides();
+                    }
+				}
+				else
+				{
 					EndIntro();
-                }
+				}
 			}
 			else if (TextWriter.Skippable)
 			{
