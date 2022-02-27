@@ -1,9 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
+using UnityEngine.UI;
 
 public class GameManager : Singleton<GameManager> {
     public GameObject[] Camera;
+    public Text CustomerText;
+    public GameObject Tanuki;
 
     private DrawingItem _currentItem;
     private enum CamName
@@ -36,10 +40,39 @@ public class GameManager : Singleton<GameManager> {
         CharacterController.Instance.EnterCharacter(() =>
         {
             _currentItem = (DrawingItem)Random.Range(0, 8);
-
+            string prompt = Library.Instance.RetrievePrompt(_currentItem);
+            TextWriter.Instance.WriteLine(CustomerText, prompt, DoDrawing);
         });
     }
 
+    private void DoDrawing()
+    {
+        Tanuki.transform.DORotate(new Vector3(0f, 180f, 0f), 5f)
+        .OnComplete(() =>
+        {
+            TransitionCameras(CamName.Main, CamName.Drawing);
+            DrawingController.Instance.StartDrawing(_currentItem, () =>
+            {
+                ScoreController.Instance.SetNewCheckPoints(_currentItem);
+                int score = ScoreController.Instance.ScoreDrawing(Drawing.Instance.FinalPoints());
+                score = Library.Instance.DetermineScore(score);
+                ExitCustomer(score);
+                //TODO: Add scoring effect idk where tho 💕
+                TransitionCameras(CamName.Drawing, CamName.Main);
+            });
+        });
+    }
+
+    private void ExitCustomer(int score)
+    {
+        string customerResponse = Library.Instance.RetrieveScore(_currentItem, score);
+        TextWriter.Instance.WriteLine(CustomerText, customerResponse, () =>
+        {
+            DOTween.Sequence()
+                .AppendInterval(.25f)
+                .AppendCallback(CharacterEnter);
+        });
+    }
 
     /// <summary>
     /// transitions between two cameras

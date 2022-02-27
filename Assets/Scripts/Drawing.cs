@@ -51,12 +51,9 @@ public class Drawing : Singleton<Drawing> {
     {
         AllLineObjects = new List<GameObject>();
         Lines = new List<Line>();
+        _currentlyDrawing = false;
     }
-    
-    private void Update()
-    {
-        Draw();
-    }
+
     public void Draw()
     {
         if (Input.GetMouseButtonDown(0))
@@ -78,7 +75,6 @@ public class Drawing : Singleton<Drawing> {
             _currentLineRenderer = null;
         }
     }
-
 
     /// <summary>
     /// THIS THE POINTY BITCH OLIVER

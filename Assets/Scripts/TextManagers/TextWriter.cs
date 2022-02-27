@@ -23,7 +23,7 @@ public class TextWriter : Singleton<TextWriter> {
 		_typeWriter = DOTween.Sequence();
 	}
 
-    public void WriteLine(Text txt, string line)
+	public void WriteLine(Text txt, string line, System.Action callBack = null)
     {
 		if (CanType)
 		{
@@ -48,7 +48,16 @@ public class TextWriter : Singleton<TextWriter> {
 			_typeWriter.AppendInterval(TimeToType).AppendCallback(() =>
 			{
 				txt.text = _queue.Dequeue();
-			}).OnComplete(() => { CanType = true; Skippable = false; });
+			})
+			.OnComplete(() => 
+			{ 
+				CanType = true; 
+				Skippable = false; 
+				if(callBack != null)
+                {
+					callBack();
+                }
+			});
 		}
     }
 
