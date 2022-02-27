@@ -54,7 +54,7 @@ public class ScoreController : Singleton<ScoreController>
 		for(int i = 0; i < _checkPoints.Count; i++)
 		{
 			// if checkpoint not hit and within distance set to true
-			Debug.Log(point + "  -----  " + _checkPoints[i]);
+			//Debug.Log(point + "  -----  " + _checkPoints[i]);
 			if(Vector2.Distance(point, _checkPoints[i]) <= LengthAllowedForHitCheckPoint)
 			{
 				_checkPoints.RemoveAt(i);

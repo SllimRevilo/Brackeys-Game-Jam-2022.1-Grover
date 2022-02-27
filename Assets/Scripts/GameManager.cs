@@ -20,7 +20,6 @@ public class GameManager : Singleton<GameManager> {
     }
 	private void Start()
     {
-
     }
 
     /// <summary>
@@ -28,7 +27,7 @@ public class GameManager : Singleton<GameManager> {
     /// </summary>
     public void StartGame()
     {
-        TransitionCameras(CamName.Intro, CamName.Main);
+       // TransitionCameras(CamName.Intro, CamName.Main);
         CharacterEnter();
     }
 
@@ -39,7 +38,7 @@ public class GameManager : Singleton<GameManager> {
     {
         CharacterController.Instance.EnterCharacter(() =>
         {
-            _currentItem = (DrawingItem)Random.Range(0, 8);
+            _currentItem = (DrawingItem)Random.Range(0, 6);
             string prompt = Library.Instance.RetrievePrompt(_currentItem);
             TextWriter.Instance.WriteLine(CustomerText, prompt, DoDrawing);
         });
@@ -47,7 +46,7 @@ public class GameManager : Singleton<GameManager> {
 
     private void DoDrawing()
     {
-        Tanuki.transform.DORotate(new Vector3(0f, 180f, 0f), 5f)
+        Tanuki.transform.DORotate(new Vector3(0f, 180f, 0f), .5f)
         .OnComplete(() =>
         {
             TransitionCameras(CamName.Main, CamName.Drawing);
@@ -56,9 +55,16 @@ public class GameManager : Singleton<GameManager> {
                 ScoreController.Instance.SetNewCheckPoints(_currentItem);
                 int score = ScoreController.Instance.ScoreDrawing(Drawing.Instance.FinalPoints());
                 score = Library.Instance.DetermineScore(score);
-                ExitCustomer(score);
-                //TODO: Add scoring effect idk where tho 💕
                 TransitionCameras(CamName.Drawing, CamName.Main);
+
+                Tanuki.transform.DORotate(new Vector3(0f, 0f, 0f), .5f)
+                .OnComplete(() =>
+                {
+                    ExitCustomer(score);
+                    //TODO: Add scoring effect idk where tho 💕
+                    CharacterController.Instance.ExitCharacter(score);
+                });
+
             });
         });
     }
@@ -82,6 +88,6 @@ public class GameManager : Singleton<GameManager> {
     private void TransitionCameras(CamName fadeOut, CamName fadeIn)
     {
         Camera[(int)fadeOut].SetActive(false);
-        Camera[(int)fadeIn].SetActive(false);
+        Camera[(int)fadeIn].SetActive(true);
     }
 }

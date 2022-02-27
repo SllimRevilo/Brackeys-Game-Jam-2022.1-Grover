@@ -23,6 +23,7 @@ public class MenuController : MonoBehaviour {
 		Menu.SetActive(false);
 		AudioManager.Instance.RandomizeTrack();
 		AudioManager.Instance.AmbienceVolume();
+		GameManager.Instance.StartGame();
     }
 
 	public void ClearProgress()

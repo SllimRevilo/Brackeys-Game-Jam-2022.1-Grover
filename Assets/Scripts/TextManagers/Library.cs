@@ -6,14 +6,13 @@ using UnityEngine;
 public enum DrawingItem
 {
     bomb,
-    sword,
+    //sword,
     hat,
-    chair,
     lantern,
     onigiri,
     paintbrush,
     teacup,
-    scroll
+    //scroll,
 }
 
 public class Library : Singleton<Library>
@@ -23,14 +22,13 @@ public class Library : Singleton<Library>
     private Dictionary<DrawingItem, string> _prompt = new Dictionary<DrawingItem, string>()
     {
         {DrawingItem.bomb, "I need a bomb to go fishing with!\nNow give me one!" },
-        {DrawingItem.sword, "I must have a sword to\npractice my kata with." },
+        //{DrawingItem.sword, "I must have a sword to\npractice my kata with." },
         {DrawingItem.hat, "I have a big date tonight and\nsimply must look good…\nA hat shall do nicely, no?" },
-        {DrawingItem.chair,  "I have to stand at my shop all day…\nI would love a chair to sit in."},
         {DrawingItem.lantern, "I cannot read when the sun\ngoes down. Maybe a lantern\nwould help?" },
         {DrawingItem.onigiri, "I’m always hungry. If only I\nhad some food that would\nbe easy to carry with me and eat…" },
         {DrawingItem.paintbrush, "I need something to paint with." },
         {DrawingItem.teacup, "My mother is coming over for tea,\nand she’s very judgemental…" },
-        {DrawingItem.scroll, "I've run out of paper\nto write my novel on!" }
+        //{DrawingItem.scroll, "I've run out of paper\nto write my novel on!" }
     };
 
     private Dictionary<DrawingItem, string[]> _scores = new Dictionary<DrawingItem, string[]>()
@@ -42,6 +40,7 @@ public class Library : Singleton<Library>
                 "It's perfect! Shiny! Round!\nKABOOM!"
             }
         },
+        /*
         {DrawingItem.sword, new string[]
             {
                 "I'm not sure I can cut\nanything with this.",
@@ -49,18 +48,12 @@ public class Library : Singleton<Library>
                 "What a sword! You must be a master!"
             }
         },
+        */
         {DrawingItem.hat, new string[]
             {
                 "Do you not have eyes?",
                 "Good enough to cover\nmy head, I suppose.",
                 "Tre Magnifique! It's beautiful!"
-            }
-        },
-        {DrawingItem.chair, new string[]
-            {
-                "I'm not sure this is sturdy...",
-                "Time to rest my feet...",
-                "Ah, how comfy! I love it!"
             }
         },
         {DrawingItem.lantern, new string[]
@@ -91,6 +84,7 @@ public class Library : Singleton<Library>
                 "How beautiful! Now Mother\nwill praise me for sure!"
             }
         },
+        /*
         {DrawingItem.scroll, new string[]
             {
                 "I'm not sure this could be\nused even as toilet paper.",
@@ -98,6 +92,7 @@ public class Library : Singleton<Library>
                 "How beautiful! How smooth!\nTruly worthy of literature!"
             }
         }
+        */
     };
     #endregion
 

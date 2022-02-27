@@ -32,11 +32,11 @@ public class CharacterController :Singleton<CharacterController> {
 	private string _deflateAnimationName = "deflate";
 	private string _defaultAnimationName = "defaultStand";
 	private string _excitedAnimationName = "exciteJump";
-	private string _enterAnimationName = "OLIVER PUT THE WALK IN ANIMATION NAME HERE";
-	private string _exitAnimationName = "OLIVER PUT THE WALK OUT ANIMATION NAME HERE";
+	private string _enterAnimationName = "walkIn";
+	private string _exitAnimationName = "walkOut";
 
 	//TODO: Fix the anim lenght array 💕
-	private float[] _animLengths = new float[] { 0f/*default length*/, 0f/*bow length*/, 0f/*sad length*/, 0f/*Happy length*/, 0f/*enter length*/, 0f/*exit Length*/ };
+	private float[] _animLengths = new float[] { 2f/*default length*/, 1f/*bow length*/, 1f/*sad length*/, 1f/*Happy length*/, 1f/*enter length*/, 1.5f/*exit Length*/ };
 	public CharacterType currentCustomer;
 
 	/// <summary>
@@ -46,7 +46,7 @@ public class CharacterController :Singleton<CharacterController> {
 	public void EnterCharacter(System.Action onComplete)
     {
 		currentCustomer = (CharacterType)Random.Range(1,4);
-		Debug.Log("THIS SEQUENCE WILL CRASH IF YOU DONT FIX THE ANIMATION NAME AnD TIMING THX 💕");
+		GetCharacter(currentCustomer, true);
 		DOTween.Sequence()
 			.AppendCallback(() =>
 			{
@@ -69,7 +69,7 @@ public class CharacterController :Singleton<CharacterController> {
 			});
 	}
 
-	public void ExitCharacter(int score, System.Action onComplete)
+	public void ExitCharacter(int score, System.Action onComplete = null)
     {
 		float reactionDelay = 0f;
         if (score > 0)
@@ -99,8 +99,31 @@ public class CharacterController :Singleton<CharacterController> {
 				DoCharacterAction(currentCustomer, AnimationType.Exit);
 			})
 			.AppendInterval(_animLengths[(int)AnimationType.Exit])
-			.OnComplete(() => { onComplete(); });
+			.OnComplete(() => 
+			{
+				GetCharacter(currentCustomer, false);
+				onComplete(); 
+			});
 
+	}
+
+	private void GetCharacter(CharacterType character, bool setActive)
+    {
+		switch (character)
+		{
+			case CharacterType.Tanuki:
+				TanukiAnimator.gameObject.SetActive(setActive);
+				break;
+			case CharacterType.Cat:
+				CatAnimator.gameObject.SetActive(setActive);
+				break;
+			case CharacterType.Dog:
+				DogAnimator.gameObject.SetActive(setActive);
+				break;
+			case CharacterType.Crow:
+				CrowAnimator.gameObject.SetActive(setActive);
+				break;
+		}
 	}
 
 	/// <summary>
@@ -150,6 +173,9 @@ public class CharacterController :Singleton<CharacterController> {
 				break;
 			case AnimationType.Enter:
 				anim.Play(_enterAnimationName);
+				break;
+			case AnimationType.Exit:
+				anim.Play(_exitAnimationName);
 				break;
 		}
 	}
