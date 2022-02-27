@@ -36,6 +36,7 @@ public class GameManager : Singleton<GameManager> {
     /// </summary>
     private void CharacterEnter()
     {
+        CustomerPanel.SetActive(true);
         CharacterController.Instance.EnterCharacter(() =>
         {
             _currentItem = (DrawingItem)Random.Range(0, 6);
@@ -79,7 +80,7 @@ public class GameManager : Singleton<GameManager> {
     {
         MenuController.Instance.UpdateScore(_totalScore);
         MenuController.Instance.MainMenu();
-
+        CustomerPanel.SetActive(false);
     }
     private void ExitCustomer(int tier)
     {
