@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DrawingController : Singleton<DrawingController> {
     public GameObject button;
+    public float Timer;
+
     private bool _currentlyDrawing;
     private System.Action _callback;
 
@@ -17,6 +19,7 @@ public class DrawingController : Singleton<DrawingController> {
         if (_currentlyDrawing)
         {
             Drawing.Instance.Draw();
+            Timer -= Time.deltaTime;
         }
     }
 

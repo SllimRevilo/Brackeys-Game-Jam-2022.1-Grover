@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MenuController : MonoBehaviour {
+public class MenuController : Singleton<MenuController> {
 
 	public GameObject Menu;
 	public GameObject CreditsMenu;
@@ -15,7 +15,7 @@ public class MenuController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		CreditsMenu.SetActive(false);
-		Score.text = HIGH + PlayerPrefs.GetFloat(SCOR, 0);
+		Score.text = HIGH + PlayerPrefs.GetInt(SCOR, 0);
 	}
 
 	public void NewGame()
@@ -28,9 +28,19 @@ public class MenuController : MonoBehaviour {
 
 	public void ClearProgress()
     {
-		PlayerPrefs.SetFloat(SCOR, 0);
-		Score.text = HIGH + PlayerPrefs.GetFloat(SCOR, 0);
+		PlayerPrefs.SetInt(SCOR, 0);
+		Score.text = HIGH + PlayerPrefs.GetInt(SCOR, 0);
 	}
+
+	public void UpdateScore(int newScore)
+    {
+		int oldScore = PlayerPrefs.GetInt(SCOR, 0);
+		if(newScore > oldScore)
+        {
+			PlayerPrefs.SetInt(SCOR, newScore);
+			Score.text = HIGH + newScore;
+		}
+    }
 
 	public void Quit()
     {

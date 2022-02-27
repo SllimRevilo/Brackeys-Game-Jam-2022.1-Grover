@@ -6,9 +6,11 @@ using UnityEngine.UI;
 
 public class GameManager : Singleton<GameManager> {
     public GameObject[] Camera;
+    public GameObject CustomerPanel;
     public Text CustomerText;
     public GameObject Tanuki;
 
+    private int _totalScore;
     private DrawingItem _currentItem;
     private enum CamName
     {
@@ -18,16 +20,13 @@ public class GameManager : Singleton<GameManager> {
         Ending = 3,
         Menu = 4
     }
-	private void Start()
-    {
-    }
 
     /// <summary>
     /// self explanitory... i hope
     /// </summary>
     public void StartGame()
     {
-       // TransitionCameras(CamName.Intro, CamName.Main);
+        _totalScore = 0;
         CharacterEnter();
     }
 
@@ -50,38 +49,50 @@ public class GameManager : Singleton<GameManager> {
         .OnComplete(() =>
         {
             TransitionCameras(CamName.Main, CamName.Drawing);
+            CustomerPanel.SetActive(false);
             DrawingController.Instance.StartDrawing(_currentItem, () =>
             {
-                PrizeContainerController.Instance.PlayWin(_currentItem);
                 ScoreController.Instance.SetNewCheckPoints(_currentItem);
                 int score = ScoreController.Instance.ScoreDrawing(Drawing.Instance.FinalPoints());
-                score = Library.Instance.DetermineScore(score);
-                TransitionCameras(CamName.Drawing, CamName.Main);
+                _totalScore += score;
 
+                PrizeContainerController.Instance.PlayWin(_currentItem);
+                int tier = Library.Instance.DetermineScore(score);
+                TransitionCameras(CamName.Drawing, CamName.Main);
+                CustomerPanel.SetActive(true);
                 Tanuki.transform.DORotate(new Vector3(0f, 0f, 0f), .5f)
                 .OnComplete(() =>
                 {
-                    string customerResponse = Library.Instance.RetrieveScore(_currentItem, score);
+                    string customerResponse = Library.Instance.RetrieveScore(_currentItem, tier);
                     TextWriter.Instance.WriteLine(CustomerText, customerResponse, () =>
                     {
-                        ExitCustomer(score);
+                        ExitCustomer(tier);
                     });
-                    //TODO: Add scoring effect idk where tho 💕
-                    
+                        //TODO: Add scoring effect idk where tho 💕
                 });
-
             });
         });
     }
 
-    private void ExitCustomer(int score)
+    private void EndGame()
     {
-        CharacterController.Instance.ExitCharacter(score, () =>
+        MenuController.Instance.UpdateScore(_totalScore);
+
+    }
+    private void ExitCustomer(int tier)
+    {
+        CharacterController.Instance.ExitCharacter(tier, () =>
         {
             PrizeContainerController.Instance.ExitWin();
             DOTween.Sequence()
                 .AppendInterval(.75f)
-                .AppendCallback(CharacterEnter);
+                .AppendCallback(() =>
+                {
+                    if (DrawingController.Instance.Timer > 0)
+                        CharacterEnter();
+                    else
+                        EndGame();
+                });
         });
     }
 
