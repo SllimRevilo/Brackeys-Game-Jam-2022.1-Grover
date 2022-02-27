@@ -23,9 +23,9 @@ public class ScoreController : Singleton<ScoreController>
 	{
 		{DrawingItem.bomb, 5.682515f},
 		{DrawingItem.hat, 5.036776f},
-		{DrawingItem.lantern, 0f},
-		{DrawingItem.onigiri, 0f},
-		{DrawingItem.paintbrush, 0f},
+		{DrawingItem.lantern, 5.821858f},
+		{DrawingItem.onigiri, 4.874483f},
+		{DrawingItem.paintbrush, 5.213915f},
 		{DrawingItem.teacup, 4.396302f}
 	};
 
@@ -54,6 +54,7 @@ public class ScoreController : Singleton<ScoreController>
 		for(int i = 0; i < _checkPoints.Count; i++)
 		{
 			// if checkpoint not hit and within distance set to true
+			Debug.Log(point + "  -----  " + _checkPoints[i]);
 			if(Vector2.Distance(point, _checkPoints[i]) <= LengthAllowedForHitCheckPoint)
 			{
 				_checkPoints.RemoveAt(i);
@@ -61,13 +62,6 @@ public class ScoreController : Singleton<ScoreController>
 			}
 		}
 	}
-
-	public void scoreshit()
-    {
-		SetNewCheckPoints(DrawingItem.bomb);
-		int score = ScoreDrawing(Drawing.Instance.FinalPoints());
-		Debug.Log(score);
-    }
 
 	/// <summary>
 	/// Scores the drawing from 0 - 100
@@ -89,19 +83,13 @@ public class ScoreController : Singleton<ScoreController>
 		// if not completed the score is 0
 		if(!IsDrawingComplete())
 		{
-			Debug.Log(_checkPoints.Count);
-			Debug.Log("SAEDRTHDFGSHTSHTDFGG");
 			return 0;
 		}
-
 		// gets total length of lines for the checkpoints and the drawing
-		float totalScoreValue = LengthBetweenDrawnPoints * GetScoresLength(drawnLines);
+		float totalScoreValue = LengthBetweenDrawnPoints * (float)GetScoresLength(drawnLines);
 
 		// gets how far off the two are from each other as a percent less than 100
 		float percentOff = 0;
-
-		Debug.Log(_checkPointsLength);
-		Debug.Log(totalScoreValue);
 
 		if(_checkPointsLength > totalScoreValue)
 		{
@@ -170,7 +158,8 @@ public class ScoreController : Singleton<ScoreController>
 		List<Vector2> newList = new List<Vector2>();
 		for(int i = 0; i < array.Length; i++)
         {
-			Vector2 vec = new Vector2(array[i].transform.position.x, array[i].transform.position.z);
+			Vector2 vec = new Vector2(array[i].transform.position.x, array[i].transform.position.y);
+
 			newList.Add(vec);
         }
 		return newList;

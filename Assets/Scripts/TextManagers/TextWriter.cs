@@ -7,6 +7,8 @@ using DG.Tweening;
 
 public class TextWriter : Singleton<TextWriter> {
 
+	public GameObject Panel;
+
 	private Sequence _typeWriter;
 	private Queue<string> _queue;
 
@@ -20,10 +22,11 @@ public class TextWriter : Singleton<TextWriter> {
 
 	void Start()
     {
+		Panel.GetComponent<Image>().enabled = false;
 		_typeWriter = DOTween.Sequence();
 	}
 
-	public void WriteLine(Text txt, string line, System.Action callBack = null)
+    public void WriteLine(Text txt, string line, System.Action callback = null, bool inBubble = true)
     {
 		if (CanType)
 		{
@@ -37,6 +40,8 @@ public class TextWriter : Singleton<TextWriter> {
 			string passIn = "";
 			_queue.Enqueue(passIn);
 			char[] toWrite = line.ToCharArray();
+
+			Panel.GetComponent<Image>().enabled = inBubble;
 
 			for (int i = 0; i < toWrite.Length; i++)
 			{
@@ -60,6 +65,12 @@ public class TextWriter : Singleton<TextWriter> {
 			});
 		}
     }
+
+	public void TextBubbleFinished (Text txt, System.Action callback = null)
+    {
+		txt.text = "";
+		Panel.GetComponent<Image>().enabled = false;
+	}
 
 	public void SkipLine()
     {
