@@ -6,11 +6,13 @@ public class DrawingController : Singleton<DrawingController> {
     public GameObject button;
     public float Timer;
 
+    private float _totalTime;
     private bool _currentlyDrawing;
     private System.Action _callback;
 
     private void Start()
     {
+        _totalTime = Timer;
         _currentlyDrawing = false;
     }
 
@@ -21,6 +23,11 @@ public class DrawingController : Singleton<DrawingController> {
             Drawing.Instance.Draw();
             Timer -= Time.deltaTime;
         }
+    }
+
+    public void ResetTimer()
+    {
+        Timer = _totalTime;
     }
 
     public void StartDrawing(DrawingItem item, System.Action callback)

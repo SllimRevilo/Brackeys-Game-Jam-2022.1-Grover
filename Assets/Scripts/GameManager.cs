@@ -27,6 +27,7 @@ public class GameManager : Singleton<GameManager> {
     public void StartGame()
     {
         _totalScore = 0;
+        DrawingController.Instance.ResetTimer();
         CharacterEnter();
     }
 
@@ -77,6 +78,7 @@ public class GameManager : Singleton<GameManager> {
     private void EndGame()
     {
         MenuController.Instance.UpdateScore(_totalScore);
+        MenuController.Instance.MainMenu();
 
     }
     private void ExitCustomer(int tier)
