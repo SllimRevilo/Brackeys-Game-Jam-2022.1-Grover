@@ -7,7 +7,8 @@ public class ScoreController : Singleton<ScoreController>
 	public float LengthBetweenDrawnPoints;
 	public float PercentAccuracyForPerfect = .95f;
 	public float LengthAllowedForHitCheckPoint = 1f;
-
+	public MeshRenderer Stencil;
+	public Material[] DaStencils;
 
 	private List<Vector2> _checkPoints;
 	private float _checkPointsLength;
@@ -43,6 +44,11 @@ public class ScoreController : Singleton<ScoreController>
 			{DrawingItem.teacup, ConvertVector3ArrayToVector2Array(CupCheckpoints)}
 		};
 	}
+
+	public void ChangeStencil(DrawingItem item)
+    {
+		Stencil.material = DaStencils[(int)item];
+    }
 
 	/// <summary>
 	/// checks each checkpoint to update it

@@ -22,6 +22,8 @@ public class DrawingController : Singleton<DrawingController> {
 
     public void StartDrawing(DrawingItem item, System.Action callback)
     {
+        ScoreController.Instance.ChangeStencil(item);
+        Drawing.Instance.DestroyDrawings();
         button.SetActive(true);
         _callback = callback;
         _currentlyDrawing = true;

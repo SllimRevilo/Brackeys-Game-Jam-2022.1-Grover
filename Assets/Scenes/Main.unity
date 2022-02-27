@@ -379,7 +379,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4869452044634192, guid: 628af58276b61594cb7339dd18effa3c, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 3.46
+      value: 3.54
       objectReference: {fileID: 0}
     - target: {fileID: 4869452044634192, guid: 628af58276b61594cb7339dd18effa3c, type: 2}
       propertyPath: m_LocalPosition.z
@@ -388,7 +388,7 @@ Prefab:
     - target: {fileID: 20232853279859400, guid: 628af58276b61594cb7339dd18effa3c,
         type: 2}
       propertyPath: orthographic size
-      value: 0.9
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 1017376487861700, guid: 628af58276b61594cb7339dd18effa3c, type: 2}
       propertyPath: m_IsActive
@@ -410,6 +410,18 @@ Prefab:
     - target: {fileID: 4990381351127264, guid: 628af58276b61594cb7339dd18effa3c, type: 2}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4563675043231126, guid: 628af58276b61594cb7339dd18effa3c, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4563675043231126, guid: 628af58276b61594cb7339dd18effa3c, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4563675043231126, guid: 628af58276b61594cb7339dd18effa3c, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 81003279335846004, guid: 628af58276b61594cb7339dd18effa3c, type: 2}
@@ -517,6 +529,14 @@ MonoBehaviour:
   LengthBetweenDrawnPoints: 0.05
   PercentAccuracyForPerfect: 1
   LengthAllowedForHitCheckPoint: 1.5
+  Stencil: {fileID: 159828076}
+  DaStencils:
+  - {fileID: 2100000, guid: 6578615699458cb41bd36dc069ddd72b, type: 2}
+  - {fileID: 2100000, guid: 7897b4b6c25855b4894961b2123f35ad, type: 2}
+  - {fileID: 2100000, guid: d3e581f7f98a80a4cb684a38507d5a09, type: 2}
+  - {fileID: 2100000, guid: 5f2fc46b103a9b044837150847dbd58b, type: 2}
+  - {fileID: 2100000, guid: be946b6f397c94844aa5390594b3c1b7, type: 2}
+  - {fileID: 2100000, guid: a5b18511d291fb342b1b10a7e7f88252, type: 2}
   BombCheckpoints:
   - {fileID: 312412876}
   - {fileID: 312412875}
@@ -976,6 +996,11 @@ Transform:
   m_Father: {fileID: 2082948897}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &159828076 stripped
+MeshRenderer:
+  m_PrefabParentObject: {fileID: 23731585546098592, guid: 628af58276b61594cb7339dd18effa3c,
+    type: 2}
+  m_PrefabInternal: {fileID: 98083268}
 --- !u!1 &175195729
 GameObject:
   m_ObjectHideFlags: 0
