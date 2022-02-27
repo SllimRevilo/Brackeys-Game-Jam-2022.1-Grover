@@ -3439,7 +3439,17 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 1500323788633566, guid: c4ddcda3a6db4404896df2cb621ee722, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114261685738643186, guid: c4ddcda3a6db4404896df2cb621ee722,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114261685738643186, guid: c4ddcda3a6db4404896df2cb621ee722, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: c4ddcda3a6db4404896df2cb621ee722, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &799465044 stripped
@@ -3576,6 +3586,38 @@ Transform:
   m_PrefabParentObject: {fileID: 4503083429433176, guid: 245e81529bebf3442bd3dc5e31f34b62,
     type: 2}
   m_PrefabInternal: {fileID: 312412797}
+--- !u!1 &914233806 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1500323788633566, guid: c4ddcda3a6db4404896df2cb621ee722,
+    type: 2}
+  m_PrefabInternal: {fileID: 789296931}
+--- !u!114 &914233808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 914233806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: c5e42eb32a8290147bcb2004a65c3f43, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
 --- !u!4 &920486508 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4165186634804272, guid: 245e81529bebf3442bd3dc5e31f34b62,
