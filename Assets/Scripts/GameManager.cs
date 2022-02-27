@@ -80,7 +80,7 @@ public class GameManager : Singleton<GameManager> {
         {
             PrizeContainerController.Instance.ExitWin();
             DOTween.Sequence()
-                .AppendInterval(.25f)
+                .AppendInterval(.75f)
                 .AppendCallback(CharacterEnter);
         });
     }
