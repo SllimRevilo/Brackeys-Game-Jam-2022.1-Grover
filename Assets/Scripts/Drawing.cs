@@ -46,6 +46,7 @@ public class Drawing : Singleton<Drawing> {
     private LineRenderer _currentLineRenderer;
     private List<GameObject> AllLineObjects;
     private Vector2 _lastPos;
+    private bool _currentlyDrawing;
 
     private void Start()
     {

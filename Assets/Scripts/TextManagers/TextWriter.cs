@@ -58,9 +58,9 @@ public class TextWriter : Singleton<TextWriter> {
 			{ 
 				CanType = true; 
 				Skippable = false; 
-				if(callBack != null)
+				if(callback != null)
                 {
-					callBack();
+					callback();
                 }
 			});
 		}

@@ -11,10 +11,6 @@ public class PrizeContainerController : MonoBehaviour {
 	public Material PrizeMaterial;
 	public Texture2D[] PrizeTexture;
 
-	public void Start()
-    {
-		PlayWin(DrawingItem.teacup);
-    }
 	public void PlayWin(DrawingItem item)
     {
 		PrizeMaterial.mainTexture = PrizeTexture[(int)item];
